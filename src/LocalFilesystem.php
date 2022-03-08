@@ -7,7 +7,7 @@
 
 namespace creocoder\flysystem;
 
-use League\Flysystem\Adapter\Local;
+use League\Flysystem\Local\LocalFilesystemAdapter;
 use Yii;
 use yii\base\InvalidConfigException;
 
@@ -38,10 +38,10 @@ class LocalFilesystem extends Filesystem
     }
 
     /**
-     * @return Local
+     * @return LocalFilesystemAdapter
      */
     protected function prepareAdapter()
     {
-        return new Local($this->path);
+        return new LocalFilesystemAdapter($this->path);
     }
 }
