@@ -235,9 +235,3 @@ By default Flysystem lists the top directory non-recursively. You can supply a d
 ```php
 $contents = Yii::$app->fs->listContents('path/to/directory', true);
 ```
-
-## Donating
-
-Support this project and [others by creocoder](https://gratipay.com/creocoder/) via [gratipay](https://gratipay.com/creocoder/).
-
-[![Support via Gratipay](https://cdn.rawgit.com/gratipay/gratipay-badge/2.3.0/dist/gratipay.svg)](https://gratipay.com/creocoder/)
