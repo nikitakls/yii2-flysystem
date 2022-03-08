@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.0
+- update dependencies for flysystem 2.0
+
+## 1.1.0
+
 - Fix Dropbox adapter not working
 
 ## 1.0.0-rc1
