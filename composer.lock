@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1d16331b61288bee6d3f0a91e2e8baa4",
+    "content-hash": "3dbe83c5e658250ddaa182ae32234efc",
     "packages": [
         {
             "name": "bower-asset/inputmask",
@@ -640,16 +640,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.212.3",
+            "version": "3.212.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "1d3db6d276299136bcaa7896653be0dcd2aaa92a"
+                "reference": "4961e8b34fab8b92a459067f264b4dc66f969a57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/1d3db6d276299136bcaa7896653be0dcd2aaa92a",
-                "reference": "1d3db6d276299136bcaa7896653be0dcd2aaa92a",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/4961e8b34fab8b92a459067f264b4dc66f969a57",
+                "reference": "4961e8b34fab8b92a459067f264b4dc66f969a57",
                 "shasum": ""
             },
             "require": {
@@ -725,9 +725,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.212.3"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.212.4"
             },
-            "time": "2022-03-07T19:48:01+00:00"
+            "time": "2022-03-08T19:19:48+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
