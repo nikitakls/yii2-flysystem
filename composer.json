@@ -1,5 +1,5 @@
 {
-    "name": "biller/yii2-flysystem",
+    "name": "nikitakls/yii2-flysystem",
     "description": "The flysystem 2.0 extension for the Yii framework",
     "keywords": [
         "yii2",
@@ -13,8 +13,8 @@
     "license": "BSD-3-Clause",
     "authors": [
         {
-            "name": "Alexander Kochetov",
-            "email": "creocoder@gmail.com"
+            "name": "Nikita Kolesnikov",
+            "email": "nikitakls@yandex.ru"
         }
     ],
     "require": {
@@ -35,7 +35,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "creocoder\\flysystem\\": "src"
+            "nikitakls\\flysystem\\": "src"
         }
     },
     "config": {
