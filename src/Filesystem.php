@@ -7,7 +7,6 @@
 
 namespace nikitakls\flysystem;
 
-use League\Flysystem\Config;
 use League\Flysystem\DirectoryListing;
 use League\Flysystem\Filesystem as NativeFilesystem;
 use League\Flysystem\FilesystemAdapter;
@@ -32,6 +31,7 @@ use yii\base\Component;
  * @method string mimeType(string $path)
  * @method void setVisibility(string $path, string $visibility)
  * @method string visibility(string $path)
+ * @method string publicUrl(string $path)
  *
  * @author Alexander Kochetov <creocoder@gmail.com>
  */
@@ -78,5 +78,5 @@ abstract class Filesystem extends Component
     {
         return $this->filesystem;
     }
-    
+
 }

@@ -45,7 +45,7 @@ class AwsS3Filesystem extends Filesystem
     /**
      * @var string|null
      */
-    public $prefix;
+    public $prefix = '';
     /**
      * @var bool
      */
@@ -66,6 +66,11 @@ class AwsS3Filesystem extends Filesystem
      * @var array|\Aws\CacheInterface|\Aws\Credentials\CredentialsInterface|bool|callable
      */
     public $credentials;
+
+    /**
+     * @var S3Client
+     */
+    private $client;
 
     /**
      * @inheritdoc
@@ -122,7 +127,59 @@ class AwsS3Filesystem extends Filesystem
         $config['version'] = (($this->version !== null) ? $this->version : 'latest');
 
         $client = new S3Client($config);
+        $this->client = $client;
 
         return new AwsS3V3Adapter($client, $this->bucket, $this->prefix, null, null, $this->options, $this->streamReads);
     }
+
+    public function publicUrl(string $path, Config $config): string
+    {
+        $location = $this->prefixer->prefixPath($path);
+
+        try {
+            return $this->client->getObjectUrl($this->bucket, $location);
+        } catch (Throwable $exception) {
+            throw UnableToGeneratePublicUrl::dueToError($path, $exception);
+        }
+    }
+
+    public function checksum(string $path, Config $config): string
+    {
+        $algo = $config->get('checksum_algo', 'etag');
+
+        if ($algo !== 'etag') {
+            throw new ChecksumAlgoIsNotSupported();
+        }
+
+        try {
+            $metadata = $this->fetchFileMetadata($path, 'checksum')->extraMetadata();
+        } catch (UnableToRetrieveMetadata $exception) {
+            throw new UnableToProvideChecksum($exception->reason(), $path, $exception);
+        }
+
+        if ( ! isset($metadata['ETag'])) {
+            throw new UnableToProvideChecksum('ETag header not available.', $path);
+        }
+
+        return trim($metadata['ETag'], '"');
+    }
+
+    public function temporaryUrl(string $path, DateTimeInterface $expiresAt, Config $config): string
+    {
+        try {
+            $options = $config->get('get_object_options', []);
+            $command = $this->client->getCommand('GetObject', [
+                    'Bucket' => $this->bucket,
+                    'Key' => $this->prefixer->prefixPath($path),
+                ] + $options);
+
+            $presignedRequestOptions = $config->get('presigned_request_options', []);
+            $request = $this->client->createPresignedRequest($command, $expiresAt, $presignedRequestOptions);
+
+            return (string)$request->getUri();
+        } catch (Throwable $exception) {
+            throw UnableToGenerateTemporaryUrl::dueToError($path, $exception);
+        }
+    }
+
 }
